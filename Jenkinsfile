@@ -5,7 +5,7 @@ pipeline {
             steps{
                 script{                 
                 //def branchname = "testme"
-                // get branch name
+                // get branch name with
                 def branchname = GIT_BRANCH
                 def testvariable = "test"
 
