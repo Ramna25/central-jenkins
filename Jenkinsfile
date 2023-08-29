@@ -1,20 +1,26 @@
 pipeline {
     agent any
 
-
     stages {
-        stage('Start'){
-            steps{
-                script{
-                def branchname = GIT_BRANCH
-                def gitrepo = scm.getUserRemoteConfigs()[0].getUrl()
-                def reponame= scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
-                def repotag= sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+        stage('Start') {
+            steps {
+                script {
+                    def branchname = GIT_BRANCH
+                    def gitrepo = scm.getUserRemoteConfigs()[0].getUrl()
+                    def reponame = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
 
-                echo "Branch Name: ${branchname}"
+                    echo "Branch Name: ${branchname}"
                     echo "Git Repository URL: ${gitrepo}"
                     echo "Repository Name: ${reponame}"
-                    echo "Tag Name: ${repotag}"
+
+                    // Get the latest tag using the sh step
+                    def repotag = sh(script: 'git describe --tags $(git rev-list --tags --max-count=1)', returnStdout: true).trim()
+                    echo "Latest Tag: ${repotag}"
+                }
+            }
+        }
+    }
+}
 
                    
                 
