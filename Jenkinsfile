@@ -3,7 +3,7 @@ pipeline {
 
 
     stages {
-        stage('Start'){
+        stage('Starts'){
             steps{
                 script{
                 def branchname = GIT_BRANCH
