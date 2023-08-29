@@ -15,7 +15,7 @@ pipeline {
                     echo "Repository Name: ${reponame}"
 
                     // Trigger the release script using the sh step
-                    sh "https://github.com/Ramna25/central-jenkins.git/release/script.sh ${branchname} ${gitrepo} ${reponame} sprint-1"
+                    sh "path/to/your/release/script.sh/release/script.sh ${branchname} ${gitrepo} ${reponame} sprint-1"
                 
 
                // build job: 'sandboxserver', wait: false, parameters: [string(name: 'branchname', value: branchname ),string(name: 'reponame', value: reponame ), string(name: 'gitrepo', value: gitrepo )] 
